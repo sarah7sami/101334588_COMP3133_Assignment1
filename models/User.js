@@ -25,6 +25,8 @@ const userSchema = new Schema({
     required: true,
     maxlength: 50
   }
+}, {
+  collection: 'users' // Name of the collection
 });
 
 userSchema.pre('save', async function (next) {

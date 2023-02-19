@@ -37,6 +37,8 @@ const employeeSchema = new Schema({
       message: "Negative salaries aren't allowed."
     }
   }
+}, {
+  collection: 'employees' // Name of the collection
 });
 
 module.exports = model('Employee', employeeSchema);
