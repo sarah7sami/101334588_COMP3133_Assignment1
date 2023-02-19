@@ -17,7 +17,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    createEmployee(
+    addEmployee(
       first_name: String!,
       last_name: String!,
       email: String,
