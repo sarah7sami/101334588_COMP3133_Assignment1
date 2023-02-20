@@ -2,13 +2,13 @@ const { model, Schema } = require('mongoose');
 const { isEmail } = require('validator');
 
 const employeeSchema = new Schema({
-  firstName: {
+  first_name: {
     type: String,
     required: true,
     trim: true,
     maxlength: 100
   },
-  lastName: {
+  last_name: {
     type: String,
     required: true,
     trim: true,
