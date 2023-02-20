@@ -5,7 +5,7 @@ const employeeResolvers = {
     employees: async () => {
       try {
         const employees = await EmployeeModel.find();
-        console.log(employees)
+        // console.log(employees)
         return employees;
       } catch (err) {
         throw err;
