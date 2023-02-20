@@ -10,12 +10,12 @@ const employeeResolvers = {
         throw err;
       }
     },
-    employee: async (_, { eid }) => {
+    employee: async (_, { id }) => {
       try {
-        if (!eid) {
+        if (!id) {
           throw new Error("Employee ID is required");
         } else {
-          const employee = await EmployeeModel.findById(eid);
+          const employee = await EmployeeModel.findById(id);
           if (!employee) {
             throw new Error("Employee not found");
           }
@@ -47,13 +47,13 @@ const employeeResolvers = {
         throw err;
       }
     },
-    updateEmployee: async (_, { eid, ...updateData }) => {
+    updateEmployee: async (_, { id, ...updateData }) => {
       try {
-        if (!eid) {
+        if (!id) {
           throw new Error("Employee ID is required");
         } else {
           const employee = await EmployeeModel.findByIdAndUpdate(
-            eid,
+            id,
             updateData,
             { new: true }
           );
@@ -66,12 +66,12 @@ const employeeResolvers = {
         throw err;
       }
     },
-    deleteEmployee: async (_, { eid }) => {
+    deleteEmployee: async (_, { id }) => {
       try {
-        if (!eid) {
+        if (!id) {
           throw new Error("Employee ID is required");
         } else {
-          const employee = await EmployeeModel.findByIdAndDelete(eid);
+          const employee = await EmployeeModel.findByIdAndDelete(id);
           if (!employee) {
             throw new Error("Employee not found");
           }
