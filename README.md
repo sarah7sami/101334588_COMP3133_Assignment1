@@ -1,7 +1,6 @@
 # 101334588_COMP3133_Assignment1
 Backend using NodeJS, Express, GraphQL and MongoDB.
 
-// format the above into a table
 | Dependencies | Version |
 |--------------|---------|
 | @graphql-tools/load-files | ^6.6.1 |
