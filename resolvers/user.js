@@ -12,7 +12,11 @@ const userResolvers = {
         if (!isMatch) {
           throw new Error("Invalid password");
         }
-        return user;
+        return {
+          status: true,
+          user,
+          message: "User logged in successfully",
+        };
       } catch (err) {
         throw err;
       }
@@ -21,17 +25,17 @@ const userResolvers = {
   Mutation: {
     signup: async (_, args) => {
       try {
-        const user = new UserModel(args);
         const existingUser = await UserModel.findOne({
           $or: [{ email: args.email }, { username: args.username }],
         });
         if (existingUser) {
           throw new Error("User already exists with that email or username");
         } else {
+          const user = new UserModel(args);
           const savedUser = await user.save();
           return {
             status: true,
-            email: savedUser.email,
+            user: savedUser,
             message: "User registered successfully",
           };
         }
@@ -39,7 +43,7 @@ const userResolvers = {
         throw err;
       }
     },
-  },
+  },  
 };
 
 module.exports = userResolvers;

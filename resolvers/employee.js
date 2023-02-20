@@ -5,7 +5,6 @@ const employeeResolvers = {
     employees: async () => {
       try {
         const employees = await EmployeeModel.find();
-        // console.log(employees)
         return employees;
       } catch (err) {
         throw err;
@@ -35,17 +34,22 @@ const employeeResolvers = {
           email: args.email,
         });
         if (existingEmail) {
-          throw new Error("Email already exists");
+          return {
+            status: false,
+            message: "Employee with this email already exists",
+          };
         } else {
           const savedEmployee = await employee.save();
           return {
             status: true,
-            email: savedEmployee.email,
             message: "Employee added successfully",
           };
         }
       } catch (err) {
-        throw err;
+        return {
+          status: false,
+          message: err.message,
+        };
       }
     },
     updateEmployee: async (_, { id, ...updateData }) => {
@@ -61,7 +65,10 @@ const employeeResolvers = {
           if (!employee) {
             throw new Error("Employee not found");
           }
-          return { status: true, message: "Employee updated successfully" };
+          return {
+            status: true,
+            message: "Employee updated successfully",
+          };
         }
       } catch (err) {
         throw err;
@@ -78,14 +85,19 @@ const employeeResolvers = {
           }
           return {
             status: true,
+            id: employee.id,
+            first_name: employee.first_name,
+            last_name: employee.last_name,
             email: employee.email,
+            gender: employee.gender,
+            salary: employee.salary,
             message: "Employee deleted successfully",
           };
         }
       } catch (err) {
         throw err;
       }
-    },
+    },    
   },
 };
 
