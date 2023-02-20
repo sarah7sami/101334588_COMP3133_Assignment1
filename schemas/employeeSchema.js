@@ -13,7 +13,6 @@ const typeDefs = gql`
   type Query {
     employees: [Employee]!
     employee(id: ID!): Employee
-    searchEmployees(query: String!): [Employee]!
   }
 
   type Mutation {
@@ -23,7 +22,7 @@ const typeDefs = gql`
       email: String,
       gender: String,
       salary: Float!
-    ): Employee!
+    ): AddEmployeeResponse!
     updateEmployee(
       id: ID!,
       first_name: String,
@@ -32,11 +31,27 @@ const typeDefs = gql`
       gender: String,
       salary: Float
     ): UpdateEmployeeResponse!
-    deleteEmployee(id: ID!): Employee!
+    deleteEmployee(id: ID!): DeleteEmployeeResponse!
   }
-
+  
+  type AddEmployeeResponse {
+    status: Boolean!
+    message: String!
+  }
+  
   type UpdateEmployeeResponse {
     status: Boolean!
+    message: String!
+  }
+  
+  type DeleteEmployeeResponse {
+    status: Boolean!
+    id: ID!
+    first_name: String!
+    last_name: String!
+    email: String!
+    gender: String!
+    salary: Float!
     message: String!
   }
 `;

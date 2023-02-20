@@ -8,13 +8,25 @@ const typeDefs = gql`
     password: String!
   }
 
+  type LoginResponse {
+    status: Boolean!
+    user: User!
+    message: String!
+  }
+
+  type SignupResponse {
+    status: Boolean!
+    user: User!
+    message: String!
+  }
+
   type Query {
+    login(username: String!, password: String!): LoginResponse!
     user(id: ID!): User
-    login(username: String!, password: String!): User
   }
 
   type Mutation {
-    signup(username: String!, email: String!, password: String!): User!
+    signup(username: String!, email: String!, password: String!): SignupResponse!
   }
 `;
 
