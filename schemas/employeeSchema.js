@@ -31,8 +31,13 @@ const typeDefs = gql`
       email: String,
       gender: String,
       salary: Float
-    ): Employee!
+    ): UpdateEmployeeResponse!
     deleteEmployee(id: ID!): Employee!
+  }
+
+  type UpdateEmployeeResponse {
+    status: Boolean!
+    message: String!
   }
 `;
 
